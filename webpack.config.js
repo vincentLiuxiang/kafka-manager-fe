@@ -4,17 +4,10 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const gift = require('@dt/fe-gift');
 
 const isProd = process.env.NODE_ENV === 'production';
 const outPath = `${__dirname}/dist`;
 const filename = isProd ? '[name].[contenthash]' : '[name]';
-let publicPath = gift.getBaseUrl('/');
-
-// 兼容 fe-gift 老版本 bug
-if (!publicPath.endsWith('/')) {
-  publicPath = publicPath + '/';
-}
 
 const plugins = [new HtmlWebpackPlugin({
   template: './src/routers/index.htm',
@@ -35,7 +28,7 @@ module.exports = {
   },
   output: {
     filename: `${filename}.js`,
-    publicPath,
+    publicPath: '/',
     path: outPath,
   },
   devtool: isProd ? 'none' : 'cheap-module-eval-source-map',

@@ -11,9 +11,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@dt/common-header": "latest",
-    "@dt/fe-gift": "latest",
     "@hot-loader/react-dom": "^16.8.6",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
