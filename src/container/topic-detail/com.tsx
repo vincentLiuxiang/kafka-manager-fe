@@ -60,13 +60,17 @@ const pagination: PaginationConfig = {
   pageSize: 4,
 };
 
-export const Group = observer(() => {
+interface IGroupProps {
+  data: ITopicConsumeInfo[];
+}
+
+export const Group = (props: IGroupProps) => {
   return (
     <div className="group-detail">
-      <Table columns={groupColumns} dataSource={topic.consumeInfo} pagination={pagination}/>
+      <Table columns={groupColumns} dataSource={props.data} pagination={pagination}/>
     </div>
   );
-});
+};
 
 const flowColumns = [{
   title: '名称',

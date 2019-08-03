@@ -100,7 +100,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/api/v1/': {
-        target: 'http://10.179.99.250:8080',
+        target: 'http://10.96.96.52:8080',
         changeOrigin: true,
       },
     },

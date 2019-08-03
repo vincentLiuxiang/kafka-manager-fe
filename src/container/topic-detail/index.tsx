@@ -36,7 +36,7 @@ export class TopicDetail extends React.Component {
           <div className="k-top-row" style={{ width: '65%', float: 'right' }}>
             <p className="k-title">消费组详情</p>
             <Search placeholder="请输入消费组名称" enterButton="搜索" className="group-search"/>
-            <Group />
+            <Group data={topic.consumeInfo} />
           </div>
         </div>
         <div className="k-row right-flow mb-24">
