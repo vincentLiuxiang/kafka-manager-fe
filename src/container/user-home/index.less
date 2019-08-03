@@ -1,0 +1,45 @@
+.content-container {
+  .table-operation {
+    a {
+      color:  #f38031;
+    }
+    a + a {
+      margin-left: 10px;
+    }
+  }
+  .table-operation-bar {
+    position: absolute;
+    right: 24px;
+    z-index: 100;
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      .ant-select {
+        width: 150px;
+      }
+      .ant-input-search {
+        width: 200px;
+      }
+      &.new-topic {
+        margin-right: 30px;
+        cursor: pointer;
+        & > i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .k-collect {
+    width: 300px;
+    position: absolute;
+    bottom: 12px;
+    .ant-alert-close-icon {
+      top: 7px;
+    }
+    .k-coll-btn {
+      position: absolute;
+      top: 9px;
+      right: 15px;
+    }
+  }
+}

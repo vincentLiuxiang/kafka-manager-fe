@@ -1,16 +1,15 @@
-import { notification } from 'antd';
-import { getCookie } from './utils';
+import { notification } from 'component/antd';
+
 const window = self.window;
 
 export interface IRes {
-  requestId: string;
-  resultCode: string;
-  returnMsg: string;
+  code: number;
+  message: string;
   data: any;
 }
 
 const filter = (init: IInit) => (res: IRes) => {
-  if (res.resultCode === '401') {
+  if (res.code === 401) {
     let url = res.data;
 
     if (!/^http(s)?:\/\//.test(url)) {
@@ -21,11 +20,11 @@ const filter = (init: IInit) => (res: IRes) => {
     return null;
   }
 
-  if (res.resultCode !== '0') {
+  if (res.code !== 0) {
     if (!init.errorNoTips) {
       notification.error({
         message: '错误',
-        description: res.returnMsg || '服务器错误，请重试！',
+        description: res.message || '服务器错误，请重试！',
       });
     }
     throw res;
@@ -34,10 +33,11 @@ const filter = (init: IInit) => (res: IRes) => {
   return res.data;
 };
 
-const preFix = '/api/v1.0/ds';
+const preFix = '/api/v1';
 
 interface IInit extends RequestInit {
   errorNoTips?: boolean;
+  body?: BodyInit | null | any;
 }
 
 const csrfTokenMethod = ['POST', 'PUT', 'DELETE'];
@@ -52,7 +52,7 @@ export default function fetch(url: string, init?: IInit) {
 
   if (csrfTokenMethod.includes(init.method)) {
     init.headers = Object.assign({}, init.headers || {
-      'HEADER-CSRF': getCookie('datadream_ticket'),
+      'Content-Type': 'application/json',
     });
   }
 

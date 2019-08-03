@@ -1,35 +1,29 @@
 import * as React from 'react';
 
 import 'component/antd';
-import './index.less';
 import { Header } from 'container/header';
 import { LeftMenu } from 'container/left-menu';
-import { UserHome } from 'container/user-home';
-import { TopicDetail } from 'container/topic-detail';
 import AllModalInOne from 'container/modal';
-import { MyOrder } from 'container/my-order';
-import { Alarm } from 'container/alarm';
-import { Consumer } from 'container/consumer';
+import { TopicDetail } from 'container/topic-detail';
+import { BrokerDetail } from 'container/broker-detail';
+import { AdminHome } from 'container/admin-home';
+import { AdminTopic } from 'container/admin-topic';
 
 export default class Home extends React.Component<any> {
-  public renderUserHomePage() {
-    return <UserHome />;
-  }
-
   public renderTopicDetail() {
     return <TopicDetail />;
   }
 
-  public renderMyOrder() {
-    return <MyOrder />;
+  public renderBrokerDetail() {
+    return <BrokerDetail />;
   }
 
-  public renderAlarm() {
-    return <Alarm />;
+  public renderAdminHomePage() {
+    return <AdminHome />;
   }
 
-  public renderConsumer() {
-    return <Consumer />;
+  public renderTopic() {
+    return <AdminTopic />;
   }
 
   public render() {
@@ -37,9 +31,9 @@ export default class Home extends React.Component<any> {
     const page = match.params.page;
     return (
       <>
-        <Header active="user"/>
+        <Header active="admin"/>
         <div className="core-container">
-          <LeftMenu page={page} />
+          <LeftMenu page={page} mode="admin" />
           <div className="content-container">
             {this.runner(page)}
           </div>
@@ -51,9 +45,8 @@ export default class Home extends React.Component<any> {
 
   private runner(page: string) {
     if (page === 'topic_detail') return this.renderTopicDetail();
-    if (page === 'consumer') return this.renderConsumer();
-    if (page === 'my_order') return this.renderMyOrder();
-    if (page === 'alarm') return this.renderAlarm();
-    return this.renderUserHomePage();
+    if (page === 'broker_detail') return this.renderBrokerDetail();
+    if (page === 'topic') return this.renderTopic();
+    return this.renderAdminHomePage();
   }
 }

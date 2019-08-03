@@ -18,8 +18,8 @@ html, body, .router-nav {
   font-family: PingFangSC-Regular;
 }
 
-[class*=dsui-icon] {
-  font-family: iconfont;
+[class*=k-icon-] {
+  font-family: kafka-manager;
   font-style: normal;
   font-weight: 400;
   text-transform: none;
@@ -33,84 +33,50 @@ html, body, .router-nav {
 #root {
   width: 100%;
   position: fixed;
-  top: 56px;
+  top: 0;
   bottom: 0;
   font-size: 14px;
 }
 
-.ant-select-dropdown,
-.ant-form,
-.ant-time-picker-panel-select,
-.ant-form label {
-  color: #515a6e !important;
-  font-size: 12px !important;
+.core-container {
+  display: flex;
+  flex-flow: row nowrap;
+  bottom: 0;
+  top: 64px;
+  position: absolute;
+  width: 100%;
 }
 
-.ant-form-item-children {
-  .ant-select,
-  .ant-time-picker,
-  .ant-time-picker-input,
-  .ant-btn-sm {
-    font-size: 12px;
-  }
-  
-  .ant-btn:hover:not(.ant-btn-primary), .ant-btn:focus:not(.ant-btn-primary) {
-    color:  #f38031;
-    border-color: #f38031;
-  }
-  
-  .ant-input:focus, .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active {
-    border-color: #f38031;
-    box-shadow: 0 0 0 2px rgba(237,64,20,.2);
-  }
-  
-  .ant-btn-primary {
-    background: #f38031;
-    color: #fff;
-    border-color: #f38031;
-  }
-  
-  
-  .ant-select-dropdown-menu-item-active,
-  .ant-select-dropdown-menu-item:hover {
-    background: #f3f3f3;
-  }
-  
-  [ant-click-animating-without-extra-node='true']::after, .ant-click-animating-node {
-    border: 0 solid #f38031;
-  }
-  
-  .ant-switch-checked {
-    background: #f38031;
-  }
-  
-  .ant-select-selection:hover {
-    border-color: #f38031;
-  }
-  
-  .ant-input:hover, .ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner {
-    border-color: #f38031;
-  }
-  
-  .ant-radio-input:focus + .ant-radio-inner {
-    box-shadow: 0 0 0 2px rgba(237, 64, 20, .08);
-  }
-  
-  .ant-radio-checked .ant-radio-inner {
-    border-color: #f38031;
-  }
-  
-  .ant-radio-checked::after {
-    border: 1px solid #f38031;
-  }
-  
-  .ant-radio-inner:after {
-    background-color: #f38031;
-  }
-
-  .ant-btn-primary:hover, .ant-btn-primary:focus, .ant-btn-primary:active {
-    border-color: #f38031;
-    background: #f38031;
-  }
+.didi-theme {
+  color: #f38031;
 }
+
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  padding: 13px;
+}
+
+.ant-table-tbody > tr > td {
+  background: #fff;
+}
+
+.ant-select-dropdown-menu-item-active,
+.ant-select-dropdown-menu-item:hover {
+  background: #f3f3f3;
+}
+
+.content-container {
+  flex: 1;
+  padding: 24px;
+  background: rgba(243, 244, 245, 1);
+  overflow: auto;
+}
+
+.ant-form-item {
+  margin-bottom: 16px;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
+}
+
 

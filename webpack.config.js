@@ -49,12 +49,18 @@ module.exports = {
         use: [ isProd ? {
           loader: MiniCssExtractPlugin.loader,
           options: {
-            publicPath,
+            publicPath: '/',
           },
         } : 'style-loader', 'css-loader', {
           loader: 'less-loader',
           options: {
-            javascriptEnabled: true
+            javascriptEnabled: true,
+            modifyVars: {
+              'primary-color': '#f38031',
+              'link-color': '#f38031',
+              'font-size-base': '12px',
+              // 'border-radius-base': '2px',
+            },
           },
         }],
       },
@@ -69,12 +75,6 @@ module.exports = {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
     splitChunks: {
       cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]monaco-editor[\\/]/,
-          name: 'commons',
-          chunks: 'all',
-          priority: -1,
-        },
         antd: {
           test: /[\\/]node_modules[\\/](antd|rc-|@ant-design)/,
           name: 'antd',
@@ -99,9 +99,8 @@ module.exports = {
     disableHostCheck: true,
     historyApiFallback: true,
     proxy: {
-      '/api/v1.0/ds': {
-        // target: 'http://10.96.92.181:8888',
-        target: 'http://10.96.78.213:8888',
+      '/api/v1/': {
+        target: 'http://10.179.99.250:8080',
         changeOrigin: true,
       },
     },
