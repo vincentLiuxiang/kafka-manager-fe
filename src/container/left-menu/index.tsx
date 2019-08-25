@@ -2,36 +2,11 @@ import * as React from 'react';
 
 import './index.less';
 import { Tooltip } from 'component/antd';
+import { adminMenu, userMenu, getActiveMenu } from './constant';
 
 interface ILeftMenuProps {
   page: string;
-  mode?: string;
-}
-
-const userMenu = [{
-  href: '/',
-  i: 'k-icon-iconfontzhizuobiaozhun023110',
-  title: 'Topic 列表',
-}, {
-  href: '/user/my_order',
-  i: 'k-icon-order1',
-  title: '工单列表',
-}, {
-  href: '/user/alarm',
-  i: 'k-icon-gaojing',
-  title: '告警配置',
-}, {
-  href: '/user/consumer',
-  i: 'k-icon-xiaofeikecheng',
-  title: '消费组列表',
-}];
-
-function getActiveMenu(page: string) {
-  if (!page) return 0;
-  if (page === 'topic_detail') return 0;
-  if (page === 'my_order') return 1;
-  if (page === 'alarm') return 2;
-  if (page === 'consumer') return 3;
+  mode?: 'admin' | 'user';
 }
 
 export class LeftMenu extends React.Component<ILeftMenuProps> {
@@ -50,13 +25,13 @@ export class LeftMenu extends React.Component<ILeftMenuProps> {
   public render() {
     const { status } = this.state;
     const { page, mode } = this.props;
-    const menu = mode === 'admin' ? userMenu : userMenu;
+    const menu = mode === 'admin' ? adminMenu : userMenu;
     return (
       <div className={`left-menu ${status}`}>
         <ul>
         {
           menu.map((m, i) => {
-            const active = getActiveMenu(page);
+            const active = getActiveMenu(mode, page);
             const cnt = (
               <li className={`${active === i ? 'active' : ''}`} key={m.i}>
                 <a href={m.href} target="_blank">

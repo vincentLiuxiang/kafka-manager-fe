@@ -11,8 +11,6 @@ import { collect, uncollect } from 'lib/api';
 import { ClusterTopic } from 'container/cluster-topic';
 
 const TabPane = Tabs.TabPane;
-const Search = Input.Search;
-const Option = Select.Option;
 
 const pagination: PaginationConfig = {
   position: 'bottom',
@@ -179,12 +177,12 @@ export class UserHome extends ClusterTopic {
     });
   }
 
-  public render() {
+  public renderTable() {
     let collectData: ITopic[] = [];
     let favData: ITopic[] = [];
     topic.data.forEach((d) => {
       if (cluster.active === -1 || d.clusterId === cluster.active) {
-        const t = { ...d, key: d.topicName };
+        const t = { ...d, key: `${d.topicName}-${d.clusterId}` };
         if (!d.favorite) return collectData.push(t);
         favData.push(t);
       }
@@ -196,6 +194,21 @@ export class UserHome extends ClusterTopic {
     }
 
     return (
+      <Tabs defaultActiveKey="1" type="card">
+        <TabPane tab="Topic收藏" key="1">
+          {this.renderCollection(favData)}
+          <div className="k-collect" ref={(id) => this.uncollRef = id} />
+        </TabPane>
+        <TabPane tab="Topic列表" key="2">
+          {this.renderList(collectData)}
+          <div className="k-collect" ref={(id) => this.collRef = id} />
+        </TabPane>
+      </Tabs>
+    );
+  }
+
+  public render() {
+    return (
       <>
         <ul className="table-operation-bar">
           <li className="new-topic" onClick={modal.showNewTopic}>
@@ -203,16 +216,7 @@ export class UserHome extends ClusterTopic {
           </li>
           {this.renderClusterTopic()}
         </ul>
-        <Tabs defaultActiveKey="1" type="card">
-          <TabPane tab="Topic收藏" key="1">
-            {this.renderCollection(favData)}
-            <div className="k-collect" ref={(id) => this.uncollRef = id} />
-          </TabPane>
-          <TabPane tab="Topic列表" key="2">
-            {this.renderList(collectData)}
-            <div className="k-collect" ref={(id) => this.collRef = id} />
-          </TabPane>
-        </Tabs>
+        {this.renderTable()}
       </>
     );
   }

@@ -9,8 +9,6 @@ import { observer } from 'mobx-react';
 import { topic } from 'store/topic';
 
 const TabPane = Tabs.TabPane;
-const Search = Input.Search;
-const Option = Select.Option;
 
 const collectionColumns = [
   {
@@ -56,7 +54,6 @@ const collectionColumns = [
       return (
         <span className="table-operation">
           <a onClick={modal.showModifyCluster}>修改</a>
-          <a href="/topic_detail" target="_blank">迁移进度</a>
         </span>
       );
     },
